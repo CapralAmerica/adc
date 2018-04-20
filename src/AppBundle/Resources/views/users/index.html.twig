@@ -1,0 +1,77 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block body %}
+
+
+<div class="page-header">
+    <div class="page-title">
+        <h3>
+            Equipe
+            <small>Equipe</small>
+        </h3>
+    </div>
+    <div class="range">
+        <a href="{{ path('users_new') }}" class="btn btn-success btn-xs pull-right">
+            <i class="fa fa-plus"></i> Nouveau employé
+        </a>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h6 class="panel-title">
+            Equipe
+        </h6>
+    </div>
+    <div class="panel-body">
+        <div class="datatable">
+
+
+
+
+
+    
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Tél</th>
+                <th>Email</th>
+                <th>Fonction</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('users_show_profile', { 'id': entity.id }) }}">{{ entity.sexe }} {{ entity.nom }} {{ entity.prenom }}</a></td>
+                
+                <td>{{ entity.tel }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.fonction }}</td>
+                
+                <td class="text-right">
+                    <a href="{{ path('users_edit', { 'id': entity.id }) }}" class="btn btn-success btn-sm" >Modifier</a>
+                    <a href="{{ path('users_show_profile', { 'id': entity.id }) }}" class="btn btn-success btn-sm" >Afficher</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+    
+    {% endblock %}
