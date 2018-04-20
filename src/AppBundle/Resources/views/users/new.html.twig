@@ -6,8 +6,8 @@
 	<div class="page-header">
 		<div class="page-title">
 			<h3>
-				Equipe
-				<small>Ajouter</small>
+                {% trans %}Add User{% endtrans %}
+				<small>{% trans %}Add User{% endtrans %}</small>
 			</h3>
 		</div>
 
@@ -15,7 +15,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h6 class="panel-title">
-				Ajouter
+                {% trans %}Add User{% endtrans %}
 			</h6>
 		</div>
 		<div class="panel-body">
@@ -27,7 +27,7 @@
 
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							Ajouter
+                            {% trans %}Add User{% endtrans %}
 						</div>
 						<div class="panel-body">
 							<div class="row">
@@ -36,59 +36,7 @@
 
 									{{ form_start(form) }}
 									{{ form_errors(form) }}
-
-									<div class="form-group">
-										<label for="">Civilité</label>
-										{{ form_widget(form.sexe,{'attr':{'class':'form-control'}}) }}
-									</div>
-									<div class="form-group">
-										{{ form_label(form.nom) }}
-										{{ form_widget(form.nom,{'attr':{'class':'form-control'}}) }}
-									</div>
-									<div class="form-group">
-										{{ form_label(form.prenom) }}
-										{{ form_widget(form.prenom,{'attr':{'class':'form-control'}}) }}
-									</div>
-									<div class="form-group">
-										{{ form_label(form.dateNaissance) }}
-										{{ form_widget(form.dateNaissance,{'attr':{'class':'form-control-date'}}) }}
-									</div>
-									<div class="form-group">
-										{{ form_label(form.tel) }}
-										{{ form_widget(form.tel,{'attr':{'class':'form-control'}}) }}
-									</div>
-									<div class="form-group">
-										{{ form_label(form.email) }}
-										{{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}
-									</div>
-									<div class="form-group">
-										{{ form_label(form.adresse) }}
-										{{ form_widget(form.adresse,{'attr':{'class':'form-control'}}) }}
-									</div>
-
-									<div class="form-group">
-										{{ form_label(form.dateEntree) }}
-										{{ form_widget(form.dateEntree,{'attr':{'class':'form-control-date'}}) }}
-									</div>
-
-									<div class="form-group">
-										{{ form_label(form.fonction) }}
-										{{ form_widget(form.fonction,{'attr':{'class':'form-control'}}) }}
-									</div>
-									<div class="form-group">
-										<label for="">Photo</label>
-										{{ form_widget(form.imagefile,{'attr':{'class':'form-control'}}) }}
-									</div>
-
-									<div class="form-group">
-										<label for="">Cv</label>
-										{{ form_widget(form.cvfile,{'attr':{'class':'form-control'}}) }}
-									</div>
-
-									<div class="form-group">
-										<button type="submit" class="btn btn-primary">Ajouter</button>
-									</div>
-
+									{{ form_widget(form) }}
 									{{ form_end(form) }}
 
 								</div>
@@ -97,7 +45,7 @@
 
 						<div class="panel-footer">
 							<a href="{{ path('users') }}" class="btn btn-default">
-								Retour a la liste
+                                {% trans %}Back to the list{% endtrans %}
 							</a>
 						</div>
 					</div>

@@ -31,11 +31,9 @@ class UsersController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('AppBundle:User')->findAll();
-
+        $users = $em->getRepository('AppBundle:User')->findAll();
         return array(
-            'entities' => $entities,
+            'users' => $users,
         );
     }
     /**
@@ -299,26 +297,14 @@ class UsersController extends Controller
     /**
      * Deletes a User entity.
      *
-     * @Route("/{id}", name="users_delete")
-     * @Method("DELETE")
+     * @Route("/delete/{id}", name="users_delete")
+     * @Method("GET")
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, User $user)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:User')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find User entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
-        }
-
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
         return $this->redirect($this->generateUrl('users'));
     }
 

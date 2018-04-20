@@ -6,20 +6,20 @@
 <div class="page-header">
     <div class="page-title">
         <h3>
-            Equipe
-            <small>Equipe</small>
+            {% trans %}Users list{% endtrans %}
+            <small>{% trans %}Users list{% endtrans %}</small>
         </h3>
     </div>
     <div class="range">
         <a href="{{ path('users_new') }}" class="btn btn-success btn-xs pull-right">
-            <i class="fa fa-plus"></i> Nouveau employé
+            <i class="fa fa-plus"></i>{% trans %}New User{% endtrans %}
         </a>
     </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h6 class="panel-title">
-            Equipe
+            {% trans %}Users list{% endtrans %}
         </h6>
     </div>
     <div class="panel-body">
@@ -33,25 +33,26 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Nom</th>
-                <th>Tél</th>
-                <th>Email</th>
-                <th>Fonction</th>
+                <th>{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Phone{% endtrans %}</th>
+                <th>{% trans %}Date Create{% endtrans %}</th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+        {% for user in users %}
             <tr>
-                <td><a href="{{ path('users_show_profile', { 'id': entity.id }) }}">{{ entity.sexe }} {{ entity.nom }} {{ entity.prenom }}</a></td>
+                <td><a href="{{ path('users_edit', { 'id': user.id }) }}">{{ user }}</a></td>
                 
-                <td>{{ entity.tel }}</td>
-                <td>{{ entity.email }}</td>
-                <td>{{ entity.fonction }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.dateCreate|date('d/m/Y') }}</td>
                 
                 <td class="text-right">
-                    <a href="{{ path('users_edit', { 'id': entity.id }) }}" class="btn btn-success btn-sm" >Modifier</a>
-                    <a href="{{ path('users_show_profile', { 'id': entity.id }) }}" class="btn btn-success btn-sm" >Afficher</a>
+                    <a href="{{ path('users_edit', { 'id': user.id }) }}" class="btn btn-success btn-sm" >
+                        {% trans %}Edit{% endtrans %}</a>
+                    <a href="{{ path('users_delete', { 'id': user.id }) }}" class="btn btn-danger btn-sm" >
+                        {% trans %}Delete{% endtrans %}</a>
                 </td>
             </tr>
         {% endfor %}
