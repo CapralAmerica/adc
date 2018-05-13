@@ -1,0 +1,66 @@
+{% extends 'admin/admin.layout.html.twig' %}
+{% block title %} Пользователи {% endblock %}
+{% block header %} {% include './admin/parts/header.html.twig' %} {% endblock %}
+{% block sidebar %} {% include './admin/parts/sidebar.html.twig' %} {% endblock %}
+{% block content %}
+    <div class="main-panel">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <a href="{{ path('admin_user_add') }}" class="ml-3">
+                        <button class="btn btn-success">Добавить</button>
+                    </a>
+                    <div class="card">
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-head-bg-success">
+                            <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">Имя</th>
+                                <th scope="col">Фамилия</th>
+                                <th scope="col">Номер телефона</th>
+                                <th scope="col">Почта</th>
+                                <th scope="col">Зарегистрирован</th>
+                                <th scope="col">Роль</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.firstName }}</td>
+                                    <td>{{ user.lastName }}</td>
+                                    <td>{{ user.mobile }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.createdAt | date('Y-m-d H:i:s') }}</td>
+                                    <td>{{ user.role }}
+                                    <td>
+                                      {% if app.session.get('role') == 'ROLE_ADMIN' %}
+                                        <a href="{{ path('admin_user_edit', {'id': user.id}) }}">
+                                            <button class="btn btn-warning"><i class="la la-pencil"></i></button>
+                                        </a>
+                                      {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if app.session.get('role') == 'ROLE_ADMIN' %}
+                                        <a href="{{ path('user_delete', {'id': user.id}) }}">
+                                            <button class="btn btn-danger"><i class="la la-remove"></i></button>
+                                        </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

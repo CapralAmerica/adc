@@ -1,0 +1,53 @@
+{% extends 'admin/admin.layout.html.twig' %}
+{% block title %} Редактирование пользователя {% endblock %}
+{% block header %} {% include './admin/parts/header.html.twig' %} {% endblock %}
+{% block sidebar %} {% include './admin/parts/sidebar.html.twig' %} {% endblock %}
+{% block content %}
+    <div class="main-panel">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Редактирование пользователя</div>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ path('user_edit', {'id': user.id}) }}" method="POST">
+                                <div class="form-group">
+                                    <label for="firstName">Имя</label>
+                                    <input type="text" class="form-control input-square" id="firstName" name="firstName"
+                                           placeholder="Введите Ваше имя" value="{{ user.firstName }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Фамилия</label>
+                                    <input type="text" class="form-control input-square" id="lastName" name="lastName"
+                                           placeholder="Введите Вашу фамилию" value="{{ user.lastName }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="mobile">Номер телефона</label>
+                                    <input type="text" class="form-control input-square" id="mobile" name="mobile"
+                                           placeholder="Введите Ваш номер" value="{{ user.mobile }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Пароль</label>
+                                    <input type="password" class="form-control input-square" id="password" name="password"
+                                           placeholder="Если пароль не изменился оставьте поле пустым">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control input-square" id="email" name="email"
+                                           placeholder="Введите Ваш email" value="{{ user.email }}">
+                                </div>
+                                <div class="card-action">
+                                    <button type="submit" class="btn btn-success">Сохранить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

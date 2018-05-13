@@ -1,0 +1,62 @@
+{% extends 'admin/admin.layout.html.twig' %}
+{% block title %} Добавить пользователя {% endblock %}
+{% block header %} {% include './admin/parts/header.html.twig' %} {% endblock %}
+{% block sidebar %} {% include './admin/parts/sidebar.html.twig' %} {% endblock %}
+{% block content %}
+   <div class="main-panel">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <div class="card-title">Добавить пользователя</div>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ path('create_user') }}" method="POST">
+                                <div class="form-group">
+                                    <label for="firstName">Имя</label>
+                                    <input type="text" class="form-control input-square" id="firstName" name="firstName"
+                                           placeholder="Введите имя">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Фамилия</label>
+                                    <input type="text" class="form-control input-square" id="lastName" name="lastName"
+                                           placeholder="Введите фамилию">
+                                </div>
+                                <div class="form-group">
+                                    <label for="mobile">Номер телефона</label>
+                                    <input type="text" class="form-control input-square" id="mobile" name="mobile"
+                                           placeholder="Введите номер">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Пароль</label>
+                                    <input type="password" class="form-control input-square" id="password" name="password"
+                                           placeholder="Введите пароль">
+                                </div>
+                                <div class="form-group">
+                                    <label for="role">Роль</label>
+                                    <select type="password" class="form-control input-square" id="role" name="role">
+                                        <option value="ROLE_USER">Пользователь</option>
+                                        <option value="ROLE_ADMIN">Администратор</option>
+                                        <option value="ROLE_MODERATOR">Модератор</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email (необязателное поле)</label>
+                                    <input type="text" class="form-control input-square" id="email" name="email"
+                                           placeholder="Введите Ваш email">
+                                </div>
+                                <div class="card-action">
+                                    <button type="submit" class="btn btn-success">Добавить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+
+{% endblock %}

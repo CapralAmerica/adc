@@ -1,0 +1,87 @@
+{% extends 'admin/admin.layout.html.twig' %}
+{% block title %} Редактирование котика {% endblock %}
+{% block header %} {% include './admin/parts/header.html.twig' %} {% endblock %}
+{% block sidebar %} {% include './admin/parts/sidebar.html.twig' %} {% endblock %}
+{% block content %}
+    <div class="main-panel">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Редактирование котика</div>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ path('cats_edit', {'id': cat.id}) }}" method="POST"
+                                  enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="name">Имя</label>
+                                    <input type="text" class="form-control input-square" id="name" name="name"
+                                           placeholder="Введите имя котика" value="{{ cat.name }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="age">Возраст</label>
+                                    <input type="text" class="form-control input-square" id="age" name="age"
+                                           placeholder="Введите ввозраст котика" value="{{ cat.age }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="weight">Вес</label>
+                                    <input type="text" class="form-control input-square" id="weight" name="weight"
+                                           placeholder="Введите вес котика" value="{{ cat.weight }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="colour">Цвет</label>
+                                    <input type="text" class="form-control input-square" id="colour" name="colour"
+                                           placeholder="Введите цвет котика" value="{{ cat.colour }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="guardian_mobile">Номер опекуна</label>
+                                    <input type="text" class="form-control input-square" id="guardianMobile"
+                                           name="guardianMobile"
+                                           placeholder="Введите номер опекуна" value="{{ cat.guardianMobile }}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Стерилизован</label><br/>
+                                    <label class="form-radio-label">
+                                        <input class="form-radio-input" type="radio" name="isSterilized" value="1"
+                                               checked="">
+                                        <span class="form-radio-sign">Да</span>
+                                    </label>
+                                    <label class="form-radio-label ml-3">
+                                        <input class="form-radio-input" type="radio" name="isSterilized" value="0">
+                                        <span class="form-radio-sign">Нет</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="photo">Фото</label>
+                                    <input type="file" class="form-control-file" id="photo" name="photo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="notes">Заметки</label>
+                                    <textarea class="form-control" id="notes" name="notes" placeholder="Ваши заметки">
+                                    {{ cat.notes }}
+                                    </textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gps_lat">Координаты (широта)</label>
+                                    <input type="text" class="form-control input-square" id="gpsLat" name="gpsLat"
+                                           placeholder="Введите широту" value="{{ cat.gpsLat }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="gps_long">Координаты (долгота)</label>
+                                    <input type="text" class="form-control input-square" id="gps_long" name="gpsLong"
+                                           placeholder="Введите долготу" value="{{ cat.gpsLong }}">
+                                </div>
+                                <div class="card-action">
+                                    <button type="submit" class="btn btn-success">Сохранить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

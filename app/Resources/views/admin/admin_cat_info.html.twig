@@ -1,0 +1,66 @@
+{% extends 'admin/admin.layout.html.twig' %}
+{% block title %} Информация о котике {% endblock %}
+{% block styles %}
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+{% block header %} {% include './admin/parts/header.html.twig' %} {% endblock %}
+{% block sidebar %} {% include './admin/parts/sidebar.html.twig' %} {% endblock %}
+{% block content %}
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="tex-left">{{ cat.name }}</h5>
+                                <div class="cat-info">
+                                    <ul>
+                                        <li>Вес: {{ cat.weight }} кг</li>
+                                        <li>Возраст: {{ cat.age }} месяцев</li>
+                                        <li>Цвет: {{ cat.colour }}</li>
+                                        <li>Стерилизован: {{ cat.isSterilized  ? 'Да' : 'Нет' }}</li>
+                                        <li>Номер опекуна: {{ cat.guardianMobile }}</li>
+                                        <li>Заметки: {{ cat.notes }}</li>
+                                        <li>Добавлен: {{ cat.addedAt | date('Y-m-d H:i:s') }}</li>
+                                        <li id="lat">{{ cat.gpsLat }}</li>
+                                        <li id="long">{{ cat.gpsLong }}</li>
+                                    </ul>
+                                    <img src="{{ cat.photo }}" alt="" width="95%" height="400" class="ml-3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        function initMap() {
+            var lat = document.getElementById('lat');
+            var long = document.getElementById('long');
+            var position = {lat: Number(lat.innerText), lng: Number(long.innerText)};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: position
+            });
+            var marker = new google.maps.Marker({
+                position: position,
+                map: map
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNJtKFXn8x_KavaOHx97F186ytZMSheXw&callback=initMap">
+    </script>
+{% endblock %}

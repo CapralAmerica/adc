@@ -1,0 +1,82 @@
+{% extends 'admin/admin.layout.html.twig' %}
+{% block title %} Добавление котика {% endblock %}
+{% block header %} {% include './admin/parts/header.html.twig' %} {% endblock %}
+{% block sidebar %} {% include './admin/parts/sidebar.html.twig' %} {% endblock %}
+{% block content %}
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Добавление нового котика</div>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ path('cats_add') }}" method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="name">Имя</label>
+                                    <input type="text" class="form-control input-square" id="name" name="name"
+                                           placeholder="Введите имя котика">
+                                </div>
+                                <div class="form-group">
+                                    <label for="age">Возраст</label>
+                                    <input type="text" class="form-control input-square" id="age" name="age"
+                                           placeholder="Введите ввозраст котика">
+                                </div>
+                                <div class="form-group">
+                                    <label for="weight">Вес</label>
+                                    <input type="text" class="form-control input-square" id="weight" name="weight"
+                                           placeholder="Введите вес котика">
+                                </div>
+                                <div class="form-group">
+                                    <label for="colour">Цвет</label>
+                                    <input type="text" class="form-control input-square" id="colour" name="colour"
+                                           placeholder="Введите цвет котика">
+                                </div>
+                                <div class="form-group">
+                                    <label for="guardian_mobile">Номер опекуна</label>
+                                    <input type="text" class="form-control input-square" id="guardian_mobile"
+                                           name="guardian_mobile"
+                                           placeholder="Введите номер опекуна">
+                                </div>
+                                <div class="form-group">
+                                    <label>Стерилизован</label><br/>
+                                    <label class="form-radio-label">
+                                        <input class="form-radio-input" type="radio" name="isSterilized" value="1"
+                                               checked="">
+                                        <span class="form-radio-sign">Да</span>
+                                    </label>
+                                    <label class="form-radio-label ml-3">
+                                        <input class="form-radio-input" type="radio" name="isSterilized" value="0">
+                                        <span class="form-radio-sign">Нет</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="photo">Фото</label>
+                                    <input type="file" class="form-control-file" id="photo" name="photo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="notes">Заметки</label>
+                                    <textarea class="form-control" id="notes" name="notes" placeholder="Ваши заметки">
+                                    </textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gps_lat">Координаты (широта)</label>
+                                    <input type="text" class="form-control input-square" id="gps_lat" name="gps_lat"
+                                           placeholder="Введите широту">
+                                </div>
+                                <div class="form-group">
+                                    <label for="gps_long">Координаты (долгота)</label>
+                                    <input type="text" class="form-control input-square" id="gps_long" name="gps_long"
+                                           placeholder="Введите долготу">
+                                </div>
+                                <div class="card-action">
+                                    <button type="submit" class="btn btn-success">Добавить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

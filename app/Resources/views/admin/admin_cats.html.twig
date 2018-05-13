@@ -1,0 +1,68 @@
+{% extends 'admin/admin.layout.html.twig' %}
+{% block title %} Котики {% endblock %}
+{% block header %} {% include './admin/parts/header.html.twig' %} {% endblock %}
+{% block sidebar %} {% include './admin/parts/sidebar.html.twig' %} {% endblock %}
+{% block content %}
+    <div class="main-panel">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <a href="{{ path('admin_cats_add') }}" class="ml-3">
+                        <button class="btn btn-success">Добавить</button>
+                    </a>
+                    <div class="card-body">
+                        <table class="table table-head-bg-success">
+                            <thead>
+                            <tr class="text-center">
+                                <th scope="col">id</th>
+                                <th scope="col">Имя</th>
+                                <th scope="col">Цвет</th>
+                                <th scope="col">Возраст</th>
+                                <th scope="col">Вес</th>
+                                <th scope="col">Стерилизован</th>
+                                <th scope="col">Телефон опекуна</th>
+                                <th scope="col">Добавлен</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for cat in cats %}
+                                <tr class="text-center">
+                                    <td>{{ cat.id }}</td>
+                                    <td>{{ cat.name }}</td>
+                                    <td>{{ cat.colour }}</td>
+                                    <td>{{ cat.age }}</td>
+                                    <td>{{ cat.weight }}</td>
+                                    <td>{{ cat.isSterilized ? 'Да' : 'Нет' }}</td>
+                                    <td>{{ cat.guardianMobile }}</td>
+                                    <td>{{ cat.addedAt | date('Y-m-d H:i:s') }}</td>
+                                    <td>
+                                        <a href="{{ path('admin_cats_info', {'id': cat.id}) }}">
+                                            <button class="btn btn-info"><i class="la la-info"></i></button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('admin_cats_edit', {'id': cat.id}) }}">
+                                            <button class="btn btn-warning"><i class="la la-pencil"></i></button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('cats_delete', {'id': cat.id}) }}">
+                                            <button class="btn btn-danger"><i class="la la-remove"></i></button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
